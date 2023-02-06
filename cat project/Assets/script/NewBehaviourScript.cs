@@ -3,7 +3,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     public Rigidbody rb;
-    public float forwardforce = 2000f;
+    public float forwardforce = 500f;
     public float slideforce = 500f;
 
 

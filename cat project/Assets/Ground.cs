@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    public Transform player;
-    public Vector3 offset;
+    public GameObject[] section;
+    public int zPos = 50;
+    public bool creatingSection = false;
+    public int secum;
 
-    public Transform[] spawnPoints;
-    public GameObject block;
-    public float hi = 1f;
-    private float B = 2f;
     
     void Update()
     {
-        if (Time.time >= B)
-        {
-            Spawnground();
-            B = Time.time + hi;
 
+
+        if (creatingSection == false)
+        {
+
+            creatingSection = true;
+              StartCoroutine(GenerateSection());
         }
-        transform.position = player.position + offset;
     }
-    void Spawnground()
+    IEnumerator GenerateSection()
     {
-       
+        secum = Random.Range(0, 3);
+        Instantiate(section[secum], new Vector3(0, 0, zPos), Quaternion.identity);
+        zPos += 50;
+
+        yield return new WaitForSeconds(1);
+        creatingSection = false;
     }
+    
 }
